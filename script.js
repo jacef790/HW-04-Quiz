@@ -3,6 +3,8 @@ var questionContainerEl = document.getElementById('question-container');
 var nextButtonEl = document.getElementById('next');
 var currentQues;
 var shuffleQues;
+var questEl = document.getElementById('question');
+var answerBtnClass = document.getElementsByClassName('answer-Btn');
 start.addEventListener('click', startQuiz);
 nextButtonEl.addEventListener('click', nextQues());
 
@@ -10,16 +12,29 @@ nextButtonEl.addEventListener('click', nextQues());
 function startQuiz() {
     start.classList.add('hide');
     questionContainerEl.classList.remove('hide');
-    currentQuesIndex = 0;
+    shuffleQues = questions.Math.random(Math.floor() + 5);
+    currentQues = 0;
     nextQues();
-
-
 }
 
-function nextQues() {
-    
-    // nextButtonEl.classList.remove('hide');
 
+function nextQues() {
+    showQuestion (shuffleQues);
+    question.answer.forEach(answer => {
+        var btn = document.createElement('button')
+        nextButtonEl.innerText = answer.text
+        nextButtonEl.classList.add('btn')
+        if (answer.correct) {
+            nextButtonEl.dataset.correct = answer.correct
+        }
+        nextButtonEl.addEventListener('click', selectAnswer)
+        answerBtnClass.appendChild(buton)
+    })
+        nextButtonEl.classList.remove('hide');
+}
+
+function showQuestion(questions) {
+    questEl.innerText = questions.question
 }
 
 function selectAnswer() {
@@ -78,3 +93,5 @@ var questions = [
 
     }
 ]
+
+console.log(questions);
